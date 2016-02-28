@@ -1,5 +1,7 @@
 library(shiny)
 library(caret)
+library(gbm)
+library(e1071)
 
 train<-read.csv("train.csv")
 
