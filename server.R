@@ -108,8 +108,8 @@ shinyServer(
     output$hill_shade_noonText<-renderText({paste("Hillshade  at Noon of Summer Solstice(0 to 255):",hill_shade_noon())})
     output$hill_shade_3Text<-renderText({paste("Hillshade at 3pm of Summer Solstice(0 to 255):",hill_shade_3())})
     output$horiz_dist_fireText<-renderText({paste("Horizontal Distance To Wildfire Ignition Points(meters):",horiz_dist_fire())})
-    output$wildernessText<-renderText({paste("Wilderness Area:",wilderness())})
-    output$soil_typeText<-renderText({paste("Soil Type:",soiltype())})
+    output$wildernessText<-renderText({paste("Wilderness Area:",input$wilderness)})
+    output$soil_typeText<-renderText({paste("Soil Type:",input$soil_type)})
 
     
     userInput<- reactive({

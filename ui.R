@@ -2,11 +2,11 @@ library(shiny)
 
 shinyUI(pageWithSidebar(
   headerPanel(
-    h1(class="well",align="center","Predicting Predominant Forest Cover of Roosevelt National Forest, Northern Colorado (Using Cartographic Variables)"), 
+    h1(class="well",align="center","Predicting Predominant Forest Cover of Roosevelt National Forest, Northern Colorado"), 
     "Predicting Forest Cover"
   ),
   sidebarPanel(
-    h3("Input values:"),
+    h3("Topography:"),
     numericInput("elevation","Elevation(in meters):",0,min=0,max=4000,step=100),
     numericInput("aspect","Aspect(degrees azimuth):",0,min=0,max=360,step=1),
     numericInput("slope","Slope(Slope in degrees):",0,min=0,max=60,step=1),
@@ -66,8 +66,10 @@ shinyUI(pageWithSidebar(
     
   ),  
   mainPanel(
-    h3("Analysis"),
-    h3("You entered:"),
+    h4("This application predicts the forest cover type of a wilderness area in the Roosevelt National Park, northern Colorado.It is a prediction using Cartographic Variables (not based on satelite imagery) and is based on the parameters that you select in \"Input Values\" section in the left side panel."),
+    h4("Simply enter the values that describes the topography and click Submit button to get the prediction."),
+    tag("hr",varArgs = ""),
+    h4("You entered:"),
     uiOutput("elevationText"),
     uiOutput("aspectText"),
     uiOutput("slopeText"),
@@ -80,10 +82,9 @@ shinyUI(pageWithSidebar(
     uiOutput("horiz_dist_fireText"),
     uiOutput("wildernessText"),
     uiOutput("soil_typeText"),
-    tag("br",varArgs = ""),
-    h3("Result"),
+    tag("hr",varArgs = ""),
     h4("Based on your input, the predominant tree cover for the forest area will be:"),
-    uiOutput("prediction")
+    h3(verbatimTextOutput("prediction"))
   )
   
 ))
