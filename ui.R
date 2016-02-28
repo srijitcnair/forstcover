@@ -71,6 +71,8 @@ shinyUI(pageWithSidebar(
     h4(em(strong("Please note that first attempt may take upto 20 seconds for the results to load."))),
     tag("hr",varArgs = ""),
     h4("You entered:"),
+    uiOutput("wildernessText"),
+    uiOutput("soil_typeText"),
     uiOutput("elevationText"),
     uiOutput("aspectText"),
     uiOutput("slopeText"),
@@ -81,8 +83,6 @@ shinyUI(pageWithSidebar(
     uiOutput("hill_shade_noonText"),
     uiOutput("hill_shade_3Text"),
     uiOutput("horiz_dist_fireText"),
-    uiOutput("wildernessText"),
-    uiOutput("soil_typeText"),
     tag("hr",varArgs = ""),
     h4("Based on your input, the predominant tree cover for the forest area will be:"),
     h3(strong(uiOutput("prediction")))
