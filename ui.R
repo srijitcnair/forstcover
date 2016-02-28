@@ -7,21 +7,11 @@ shinyUI(pageWithSidebar(
   ),
   sidebarPanel(
     h3("Topography:"),
-    numericInput("elevation","Elevation(in meters):",0,min=0,max=4000,step=100),
-    numericInput("aspect","Aspect(degrees azimuth):",0,min=0,max=360,step=1),
-    numericInput("slope","Slope(Slope in degrees):",0,min=0,max=60,step=1),
-    numericInput("horiz_dist_hydr","Horizontal Distance To Hydrology(in meters):",0,min=0,max=1500,step=50),
-    numericInput("vert_dist_hydr","Vertical Distance To Hydrology(in meters):",0,min=0,max=1000,step=50),
-    numericInput("horiz_dist_road","Horizontal Distance To Roadways(in meters):",0,min=0,max=10000,step=100),
-    numericInput("hill_shade_9","Hillshade at 9am of Summer Solstice(0 to 255):",0,min=0,max=255,step=5),
-    numericInput("hill_shade_noon","Hillshade at noon of Summer Solstice(0 to 255):",0,min=0,max=255,step=5),
-    numericInput("hill_shade_3","Hillshade at 3pm of Summer Solstice(0 to 255):",0,min=0,max=255,step=5),
-    numericInput("horiz_dist_fire","Horizontal Distance To Wildfire Ignition Points(in meters):",0,min=0,max=10000,step=100),
     selectInput("wilderness","Wilderness Area:",c(
-                               "01-Rawah Wilderness Area",
-                               "02-Neota Wilderness Area2",
-                               "03-Comanche Peak Wilderness Area",
-                               "04-Cache la Poudre Wilderness Area")),  
+      "01-Rawah Wilderness Area",
+      "02-Neota Wilderness Area2",
+      "03-Comanche Peak Wilderness Area",
+      "04-Cache la Poudre Wilderness Area")),  
     selectInput("soil_type","Soil Type:",c("01-Cathedral family - Rock outcrop complex, extremely stony",
                                            "02-Vanet - Ratake families complex, very stony",
                                            "03-Haploborolis - Rock outcrop complex, rubbly",
@@ -62,12 +52,23 @@ shinyUI(pageWithSidebar(
                                            "38-Leighcan - Moran families - Cryaquolls complex, extremely stony",
                                            "39-Moran family - Cryorthents - Leighcan family complex, extremely stony",
                                            "40-Moran family - Cryorthents - Rock land complex, extremely stony")),
+    numericInput("elevation","Elevation(in meters):",0,min=0,max=4000,step=100),
+    numericInput("aspect","Aspect(degrees azimuth):",0,min=0,max=360,step=1),
+    numericInput("slope","Slope(Slope in degrees):",0,min=0,max=60,step=1),
+    numericInput("horiz_dist_hydr","Horizontal Distance To Hydrology(in meters):",0,min=0,max=1500,step=50),
+    numericInput("vert_dist_hydr","Vertical Distance To Hydrology(in meters):",0,min=0,max=1000,step=50),
+    numericInput("horiz_dist_road","Horizontal Distance To Roadways(in meters):",0,min=0,max=10000,step=100),
+    numericInput("hill_shade_9","Hillshade at 9am of Summer Solstice(0 to 255):",0,min=0,max=255,step=5),
+    numericInput("hill_shade_noon","Hillshade at noon of Summer Solstice(0 to 255):",0,min=0,max=255,step=5),
+    numericInput("hill_shade_3","Hillshade at 3pm of Summer Solstice(0 to 255):",0,min=0,max=255,step=5),
+    numericInput("horiz_dist_fire","Horizontal Distance To Wildfire Ignition Points(in meters):",0,min=0,max=10000,step=100),
       submitButton("Submit")  
     
   ),  
   mainPanel(
     h4("This application predicts the forest cover type of a wilderness area in the Roosevelt National Park, northern Colorado.It is a prediction using Cartographic Variables (not based on satelite imagery) and is based on the parameters that you select in \"Input Values\" section in the left side panel."),
     h4("Simply enter the values that describes the topography and click Submit button to get the prediction."),
+    h4(em(strong("Please note that first attempt may take upto 20 seconds for the results to load."))),
     tag("hr",varArgs = ""),
     h4("You entered:"),
     uiOutput("elevationText"),
@@ -84,7 +85,7 @@ shinyUI(pageWithSidebar(
     uiOutput("soil_typeText"),
     tag("hr",varArgs = ""),
     h4("Based on your input, the predominant tree cover for the forest area will be:"),
-    h3(verbatimTextOutput("prediction"))
+    h3(strong(uiOutput("prediction")))
   )
   
 ))
